@@ -6,7 +6,7 @@ function App() {
 
 
   return (
-      <><Greeting name='Welcome to React + Vite'/></>
+      <><Greeting name='Welcome to Blogz Frontend'/></>
   )
 }
 
