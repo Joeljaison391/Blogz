@@ -6,14 +6,17 @@
   "scripts": {
     "test": "jest",
     "dev": "vite",
+    "start": "serve -s dist",
     "build": "tsc && vite build",
+    "postinstall": "npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "serve": "^14.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.24.6",
