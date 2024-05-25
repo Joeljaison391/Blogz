@@ -41,6 +41,6 @@ describe('Navbar', () => {
 
         expect(dashboardLink.closest('a')).toHaveAttribute('href', '/dashboard');
         expect(postsLink.closest('a')).toHaveAttribute('href', '/posts');
-        expect(settingsLink.closest('a')).toHaveAttribute('href', '/settings');
+        expect(settingsLink.closest('a')).toHaveAttribute('href', '/dashboard/settings');
     });
 });
