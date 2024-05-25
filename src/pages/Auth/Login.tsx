@@ -5,6 +5,7 @@ import LogoOutline from "../../assets/Logo/Logo- Black.svg";
 import AUTHGRAD from "../../assets/AuthPages/AUTH-GRAD.jpg";
 import AuthButton from '../../ui/Buttons/AuthButton';
 import SocialLoginButtons from '../../ui/Buttons/SocialLoginButtons';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -136,12 +137,10 @@ const Login = () => {
                 <div className="text-center">
                   <p className="text-sm">
                     Don't have an account?{" "}
-                    <a
-                      href="#"
-                      className="font-medium text-gray-800 hover:text-gray-900"
-                    >
-                      Register
-                    </a>
+                    <Link to="/auth/register" className="font-medium text-gray-800 hover:text-gray-900">
+                        Register
+                      </Link>
+                    
                   </p>
                 </div>
               </Form>
