@@ -1,9 +1,11 @@
-import Greeting from "../Greeting"
+import { Navbar } from "../components/Navbar"
 
 
 const Home = () => {
   return (
-    <div><Greeting name='Welcome to Blogz Frontend'/></div>
+    <div>
+      <Navbar />
+    </div>
   )
 }
 
