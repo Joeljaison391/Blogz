@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -27,10 +26,10 @@ describe('Navbar', () => {
         expect(settingsLink).toBeInTheDocument();
     });
 
-    test('renders the signup button', () => {
+    test('renders the login button', () => {
         renderWithRouter(<Navbar />);
-        const signupButton = screen.getByRole('button', { name: /signup/i });
-        expect(signupButton).toBeInTheDocument();
+        const loginButton = screen.getByRole('button', { name: /log in/i });
+        expect(loginButton).toBeInTheDocument();
     });
 
     test('navigation links have correct attributes', () => {
@@ -41,6 +40,6 @@ describe('Navbar', () => {
 
         expect(dashboardLink.closest('a')).toHaveAttribute('href', '/dashboard');
         expect(postsLink.closest('a')).toHaveAttribute('href', '/posts');
-        expect(settingsLink.closest('a')).toHaveAttribute('href', '/dashboard/settings');
+        expect(settingsLink.closest('a')).toHaveAttribute('href', '/settings');
     });
 });
