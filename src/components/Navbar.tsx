@@ -2,49 +2,33 @@ import React from 'react';
 import { NavbarLink } from '../ui/Links/NavbarLink';
 import { SignupButton } from '../ui/Buttons/SignupButton';
 
+interface Link {
+    text: string;
+    url: string;
+}
+
 export const Navbar: React.FC = () => {
-    const links = [
-        {
-            text: 'Dashboard',
-            url: '/dashboard',
-            color: 'text-blue-500',
-            height: 'h-10',
-            padding: 'p-2.5'
-        },
-        {
-            text: 'Posts',
-            url: '/posts',
-            color: 'text-green-500',
-            height: 'h-10',
-            padding: 'p-2.5'
-        },
-        {
-            text: 'Settings',
-            url: '/dashboard/settings',
-            color: 'text-red-500',
-            height: 'h-10',
-            padding: 'p-2.5'
-        }
+    const links: Link[] = [
+        { text: 'Dashboard', url: '/dashboard' },
+        { text: 'Posts', url: '/posts' },
+        { text: 'Settings', url: '/settings' },
     ];
 
     return (
-        <div className="flex items-center justify-between p-4 bg-gray-100">
-            <div className="text-2xl font-bold">Blogz</div>
-            <nav className="flex gap-5">
-                {
-                    links.map((link, index) => (
-                        <NavbarLink
-                            key={index}
-                            text={link.text}
-                            link={link.url}
-                            color={link.color}
-                            height={link.height}
-                            padding={link.padding}
-                        />
-                    ))
-                }
-            </nav>
-            <SignupButton />
+        <div className="w-full flex justify-center bg-white m-4">
+            <div className="flex flex-col items-center justify-between p-4 bg-white shadow-md rounded-full sm:flex-row sm:items-center sm:w-3/4 sm:max-w-screen-lg sm:border sm:border-gray-300">
+                <div className="text-xl font-bold text-blue-500 mb-4 sm:mb-0 sm:mr-8">Blogz</div>
+                <nav className="flex flex-col sm:flex-row sm:gap-5">
+                    {links.map((link, index) => (
+                        <NavbarLink key={index} text={link.text} link={link.url} />
+                    ))}
+                </nav>
+                <div className="flex items-center justify-center mt-4 sm:mt-0">
+                    <div className="border border-gray-300 rounded-full p-1 hover:bg-gray-300 transition duration-300">
+                        <SignupButton />
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
