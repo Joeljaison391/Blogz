@@ -1,4 +1,5 @@
 import React  from 'react';
+import PageNotFound from '../pages/PageNotFound';
 
 const Home = React.lazy(() => import('../pages/Home'));
 const About = React.lazy(() => import('../pages/About'));
@@ -51,6 +52,7 @@ const routesConfig = [
  // { path: '/users/all', component: AllUsers, protected: false },
  // { path: '/users/:userId', component: User, protected: false },
  // { path: '/search', component: SearchResults, protected: false }
+ { path: '*', component: PageNotFound, protected: false }
 ];
 
 export default routesConfig;

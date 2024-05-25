@@ -1,21 +1,19 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 interface ProtectedRouteProps {
   component: React.ComponentType;
-  
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component, ...props }) => {
-    
-    const isAuthenticated = false; // Mock authentication state
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component: Component }) => {
+  const isAuthenticated = true; 
+  const location = useLocation();
 
-    return (
-        <Route
-            {...props}
-            element={isAuthenticated ? React.createElement(component, props) : <Navigate to="/login" replace />}
-        />
-    );
+  return isAuthenticated ? (
+    <Component />
+  ) : (
+    <Navigate to="/login" replace state={{ from: location }} />
+  );
 };
 
 export default ProtectedRoute;
