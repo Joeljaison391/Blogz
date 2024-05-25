@@ -1,8 +1,9 @@
+import Greeting from "../Greeting"
 
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div><Greeting name='Welcome to Blogz Frontend'/></div>
   )
 }
 
