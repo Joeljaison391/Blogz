@@ -2,7 +2,6 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { motion } from 'framer-motion';
 import LogoOutline from "../../assets/Logo/Logo- Black.svg";
-import BGLOGO from "../../assets/AuthPages/BG_LOGO.jpg";
 import AUTHGRAD from "../../assets/AuthPages/AUTH-GRAD.jpg";
 import AuthButton from '../../ui/Buttons/AuthButton';
 import SocialLoginButtons from '../../ui/Buttons/SocialLoginButtons';
@@ -26,7 +25,7 @@ const Login = () => {
       >
         <div className="absolute top-0 left-0 w-full h-52">
           <motion.img 
-            src={BGLOGO} 
+            src="https://res.cloudinary.com/dmqus2vrc/image/upload/v1716651807/BG_LOGO_fhvflm.jpg" 
             alt="Background" 
             className="w-full h-full" 
             initial={{ opacity: 0 }} 
