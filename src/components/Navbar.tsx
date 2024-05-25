@@ -20,7 +20,7 @@ export const Navbar: React.FC = () => {
         },
         {
             text: 'Settings',
-            url: '/settings',
+            url: '/dashboard/settings',
             color: 'text-red-500',
             height: 'h-10',
             padding: 'p-2.5'
