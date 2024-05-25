@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'ubuntu-sans-mono': ['"Ubuntu Sans Mono"', 'monospace'],
+      },
+    },
   },
   plugins: [],
 }
