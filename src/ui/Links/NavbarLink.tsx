@@ -10,11 +10,13 @@ interface NavLinkProps {
 }
 
 export const NavbarLink: React.FC<NavLinkProps> = ({ text, link, color, height, padding }) => {
-    const baseStyle = `inline-block ${color} ${height} ${padding}`;
+    const baseStyle = `inline-block ${color || 'text-gray-700'} ${height || 'h-10'} ${padding || 'p-2.5'} rounded-full hover:bg-gray-300 transition duration-300`;
 
     return (
         <RouterNavLink to={link} className={baseStyle}>
-            {text}
+            <div className="flex items-center justify-center h-full w-full">
+                {text}
+            </div>
         </RouterNavLink>
     );
 };
