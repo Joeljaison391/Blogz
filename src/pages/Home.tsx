@@ -5,7 +5,7 @@ import CallToAction from '../components/CallToAction';
 
 const Home = () => {
   return (
-    <div className="font-sans">
+    <div className="font-sans w-dvw overflow-hidden">
       <Navbar />
       <Header />
       <Features />

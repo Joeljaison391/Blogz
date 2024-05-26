@@ -1,11 +1,14 @@
-
 const Header = () => {
   return (
-    <header className="bg-white py-20">
+    <header className="bg-white py-10 sm:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-5xl font-extrabold text-gray-900">Effortless Publishing.</h1>
-        <p className="mt-4 text-xl text-gray-600">AI-assisted blogging for developers and teams.</p>
-        <div className="mt-6 flex justify-center space-x-4">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-900">
+          Effortless Publishing.
+        </h1>
+        <p className="mt-4 text-lg sm:text-xl text-gray-600">
+          AI-assisted blogging for developers and teams.
+        </p>
+        <div className="mt-6 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
           <button className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300">
             Get started
           </button>

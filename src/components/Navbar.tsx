@@ -15,9 +15,9 @@ export const Navbar: React.FC = () => {
     ];
 
     return (
-        <div className="w-full flex justify-center bg-white m-4">
-            <div className="flex flex-col items-center justify-between p-4 bg-white shadow-md rounded-full sm:flex-row sm:items-center sm:w-3/4 sm:max-w-screen-lg sm:border sm:border-gray-300">
-                <div className="text-xl font-bold text-blue-500 mb-4 sm:mb-0 sm:mr-8">Blogz</div>
+        <div className="w-full flex justify-center bg-white py-4 sm:py-6">
+            <div className="flex flex-col items-center justify-between p-4 bg-white shadow-md rounded-lg sm:flex-row sm:items-center sm:w-3/4 sm:max-w-screen-lg sm:border sm:border-gray-300">
+                <div className="text-2xl font-bold text-blue-500 mb-4 sm:mb-0 sm:mr-8">Blogz</div>
                 <nav className="flex flex-col sm:flex-row sm:gap-5">
                     {links.map((link, index) => (
                         <NavbarLink key={index} text={link.text} link={link.url} />
