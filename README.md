@@ -47,6 +47,3 @@ Here are the routes defined in our application along with their details:
 - **/users/:userId**: Page displaying a single user's profile with dynamic userId parameter.
 - **/search**: Page displaying search results based on user queries.
 
-Feel free to add or modify routes as per the requirements of the project.
-
-
