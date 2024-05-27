@@ -14,12 +14,16 @@
     "serve-heroku": "vite --host 0.0.0.0 --port $PORT preview"
   },
   "dependencies": {
+    "@azure/storage-blob": "^12.18.0",
     "@types/react-router-dom": "^5.3.3",
     "formik": "^2.4.6",
     "framer-motion": "^11.2.6",
+    "quill": "^2.0.2",
+    "quill-delta": "^5.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^6.23.1",
     "serve": "^14.2.3",
     "yup": "^1.4.0"
