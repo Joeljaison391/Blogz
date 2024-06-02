@@ -1,8 +1,9 @@
 {
   "name": "blogz-frontend",
-  "private": true,
+  "homepage": ".",
   "version": "0.0.0",
   "type": "module",
+
   "scripts": {
     "test": "jest",
     "dev": "vite",
