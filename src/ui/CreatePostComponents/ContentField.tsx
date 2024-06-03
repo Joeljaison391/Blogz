@@ -34,7 +34,10 @@ const ContentField: React.FC<ContentFieldProps> = ({ setFieldValue }) => {
     'video',
   ];
 
-
+  const quillStyles = {
+    minHeight: '200px', // Default height
+    maxHeight: '500px', // Maximum height for larger screens
+  };
 
   return (
     <div className="mb-6 pb-4 h-64">
@@ -46,6 +49,7 @@ const ContentField: React.FC<ContentFieldProps> = ({ setFieldValue }) => {
         }}
         modules={modules}
         formats={formats}
+        style={quillStyles} 
         className="mt-1 quillIMG h-52"
       />
       <Field type="hidden" name="content" value={content} />
