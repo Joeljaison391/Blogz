@@ -1,15 +1,16 @@
-import  { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage, FormikValues } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { uploadImageToAzure } from '../../utils/blobService';
 import { useNavigate } from 'react-router-dom';
+
+import TitleField from '../../ui/CreatePostComponents/TitleField';
+import ContentField from '../../ui/CreatePostComponents/ContentField';
+import SubmitButton from '../../ui/CreatePostComponents/SubmitButton';
+import SummaryField from '../../ui/CreatePostComponents/SummaryField';
+import { uploadImageToAzure } from '../../utils/blobService';
+
 
 const CreateNewPost = () => {
   const navigate = useNavigate();
-  const [content, setContent] = useState('');
-
 
   const extractBase64Images = (htmlContent: string): string[] => {
     const base64Images: string[] = [];
@@ -59,7 +60,6 @@ const CreateNewPost = () => {
         }
       });
 
-      setContent(updatedContent);
       return updatedContent;
     } catch (error) {
       console.error('Error handling images:', error);
@@ -67,7 +67,7 @@ const CreateNewPost = () => {
     }
   };
 
-  const handleCreatePost = async (values: FormikValues) => {
+  const handleCreatePost = async (values: { title: any; summary: any; tags: any; content: any; }) => {
     try {
       const updatedContent = await handleImages(values.content);
 
@@ -79,8 +79,7 @@ const CreateNewPost = () => {
       };
 
       console.log(newPost);
-      //if successful, send the newPost object to your backend and navigate to /dahsboard
-      
+      //if successful, send the newPost object to your backend and navigate to /dashboard
       navigate('/dashboard');
     } catch (error) {
       console.error('Error creating post:', error);
@@ -94,105 +93,47 @@ const CreateNewPost = () => {
     content: Yup.string().required('Content is required'),
   });
 
-  const modules = {
-    toolbar: [
-      [{ header: '1' }, { header: '2' }, { font: [] }],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ align: [] }],
-      [{ color: [] }, { background: [] }],
-      ['link', 'image', 'video'],
-      ['clean'],
-    ],
-  };
-
-  const formats = [
-    'header', 'font',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet',
-    'align',
-    'color',
-    'background',
-    'link',
-    'image',
-    'video',
-  ];
-
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold text-center mb-6">Create New Post</h2>
-      <Formik
-        initialValues={{ title: '', summary: '', tags: '', content: '' }}
-        validationSchema={validationSchema}
-        onSubmit={async (values, { setSubmitting }) => {
-          await handleCreatePost(values);
-          setSubmitting(false);
-        }}
-      >
-        {({ isSubmitting, setFieldValue }) => (
-          <Form>
-            <div className="mb-4">
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                Title
-              </label>
-              <Field
-                type="text"
-                id="title"
-                name="title"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
-              <ErrorMessage name="title" component="div" className="text-red-500 text-sm" />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="summary" className="block text-sm font-medium text-gray-700">
-                Summary
-              </label>
-              <Field
-                as="textarea"
-                id="summary"
-                name="summary"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
-              <ErrorMessage name="summary" component="div" className="text-red-500 text-sm" />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-                Tags
-              </label>
-              <Field
-                type="text"
-                id="tags"
-                name="tags"
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
-              <ErrorMessage name="tags" component="div" className="text-red-500 text-sm" />
-            </div>
-            <div className="mb-6">
-              <label htmlFor="content" className="block text-sm font-medium text-gray-700">
-                Content
-              </label>
-              <ReactQuill
-                value={content}
-                onChange={(value) => {
-                  setContent(value);
-                  setFieldValue('content', value);
-                }}
-                modules={modules}
-                formats={formats}
-                className="mt-1 quillIMG"
-              />
-              <ErrorMessage name="content" component="div" className="text-red-500 text-sm" />
-            </div>
-            <button
-              type="submit"
-              className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              disabled={isSubmitting}
-            >
-              Submit
-            </button>
-          </Form>
-        )}
-      </Formik>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <header className="flex items-center justify-between mb-6">
+        <div className="text-blue-600 font-bold text-3xl cursor-pointer" onClick={() => navigate('/')}>
+          Blogz
+        </div>
+      </header>
+      <div>
+        <h3 className='ml-8 pb-7 text-4xl font-bold '>Create a new post!</h3>
+      </div>
+      <div className="flex flex-col lg:flex-row">
+        <div className="lg:w-2/3 ml-8 p-6 bg-white shadow-md rounded-lg mb-6 lg:mb-0">
+          <Formik
+            initialValues={{ title: '', summary: '', tags: '', content: '' }}
+            validationSchema={validationSchema}
+            onSubmit={async (values, { setSubmitting }) => {
+              await handleCreatePost(values);
+              setSubmitting(false);
+            }}
+          >
+            {({ setFieldValue }) => (
+              <Form>
+                <TitleField />
+                <SummaryField /> {/* Include SummaryField component */}
+                <ContentField setFieldValue={setFieldValue} />
+                <SubmitButton isSubmitting={false} />
+              </Form>
+            )}
+          </Formik>
+        </div>
+        <div className="lg:w-1/3 p-6">
+          <div className="bg-white p-4 shadow-md rounded-lg">
+            <h3 className="font-bold text-lg mb-4">Publishing Tips</h3>
+            <ul className="list-disc pl-5">
+              <li className="mb-2">Ensure your post has a cover image set to make the most of the home feed and social media platforms.</li>
+              <li className="mb-2">Share your post on social media platforms or with your co-workers or local communities.</li>
+              <li>Ask people to leave questions for you in the comments. It's a great way to spark additional discussion describing personally why you wrote it or why people might find it helpful.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
