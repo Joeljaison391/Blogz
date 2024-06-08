@@ -66,6 +66,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         console.log('User registered successfully');
         setUser(response.data);
         localStorage.setItem('user', JSON.stringify(response.data));
+        setLoading(false);
         navigate('/dashboard');
       }
       
