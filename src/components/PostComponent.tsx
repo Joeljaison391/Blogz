@@ -13,8 +13,7 @@ const PostComponent: React.FC<PostProps> = ({ post }) => (
     <div className="flex-grow">
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-2">
         <div className="mb-2 lg:mb-0">
-          <a href={post.sourceLink} className="text-sm font-semibold text-blue-500 hover:underline">{post.source}</a>
-          <span className="text-sm text-gray-500"> for {post.author.name}</span>
+          <a className="text-sm font-semibold text-blue-500 hover:underline">{post.author.name}</a>
         </div>
         <div className="text-sm text-gray-500">{new Date(post.publishAt).toLocaleDateString()}</div>
       </div>
