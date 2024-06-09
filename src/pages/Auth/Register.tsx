@@ -6,8 +6,20 @@ import AUTHGRAD from "../../assets/AuthPages/AUTH-GRAD.jpg";
 import AuthButton from '../../ui/Buttons/AuthButton';
 import SocialLoginButtons from '../../ui/Buttons/SocialLoginButtons';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
 
 const Register = () => {
+  const { register } = useAuth();
+
+  const handleSubmit = async (values: { username: string; email: string; password: string; confirmPassword: string ;  }) => {
+    try {
+      await register(values);
+     
+    } catch (error) {
+      console.error('Error registering:', error);
+    }
+  }
+
   return (
     <div className="min-h-screen w-full bg-white py-4 px-2 flex items-center justify-center relative">
       <motion.img 
@@ -65,17 +77,15 @@ const Register = () => {
           <SocialLoginButtons />
 
           <Formik
-            initialValues={{ username: '', email: '', dob: '', actualName: '', password: '', confirmPassword: '' }}
+            initialValues={{ username: '', email: '', password: '', confirmPassword: '' }}
             validationSchema={Yup.object({
               username: Yup.string().required('Required'),
               email: Yup.string().email('Invalid email address').required('Required'),
-              dob: Yup.date().required('Required'),
-              actualName: Yup.string().required('Required'),
               password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
               confirmPassword: Yup.string().oneOf([Yup.ref('password'), undefined], 'Passwords must match').required('Required'),
             })}
             onSubmit={(values, { setSubmitting }) => {
-              console.log(values);
+              handleSubmit(values);
               setSubmitting(false);
             }}
           >
@@ -113,85 +123,52 @@ const Register = () => {
                 </div>
                 <div className="mb-4">
                   <label
-                    htmlFor="dob"
+                    htmlFor="password"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Date of Birth
+                    Password
                   </label>
                   <Field
-                    type="date"
-                    name="dob"
-                    id="dob"
+                    type="password"
+                    name="password"
+                    id="password"
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm"
                   />
-                  <ErrorMessage name="dob" component="div" className="text-red-600 text-sm mt-1" />
+                  <ErrorMessage name="password" component="div" className="text-red-600 text-sm mt-1" />
                 </div>
                 <div className="mb-4">
                   <label
-                    htmlFor="actualName"
+                    htmlFor="confirmPassword"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Actual Name
+                    Confirm Password
                   </label>
                   <Field
-                    type="text"
-                    name="actualName"
-                    id="actualName"
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:
-                    outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm"
-                    />
-                    <ErrorMessage name="actualName" component="div" className="text-red-600 text-sm mt-1" />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Password
-                    </label>
-                    <Field
-                      type="password"
-                      name="password"
-                      id="password"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm"
-                    />
-                    <ErrorMessage name="password" component="div" className="text-red-600 text-sm mt-1" />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      htmlFor="confirmPassword"
-                      className="block text-sm font-medium text-gray-700"
-                    >
-                      Confirm Password
-                    </label>
-                    <Field
-                      type="password"
-                      name="confirmPassword"
-                      id="confirmPassword"
-                      className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm"
-                    />
-                    <ErrorMessage name="confirmPassword" component="div" className="text-red-600 text-sm mt-1" />
-                  </div>
-                  <div className="mb-4">
-                    <AuthButton type="submit" text="Register" disabled={isSubmitting} />
-                  </div>
-                  <div className="text-center">
-                    <p className="text-sm">
-                      Already have an account?{" "}
-                      <Link to="/auth/login" className="font-medium text-gray-800 hover:text-gray-900">
-                        Login
-                      </Link>
-                    
-                    </p>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-          </div>
-        </motion.div>
-      </div>
-    );
-  };
-  
-  export default Register;
-  
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm"
+                  />
+                  <ErrorMessage name="confirmPassword" component="div" className="text-red-600 text-sm mt-1" />
+                </div>
+                <div className="mb-4">
+                  <AuthButton  type="submit" text="Register" disabled={isSubmitting} />
+                </div>
+                <div className="text-center">
+                  <p className="text-sm">
+                    Already have an account?{" "}
+                    <Link to="/auth/login" className="font-medium text-gray-800 hover:text-gray-900">
+                      Login
+                    </Link>
+                  </p>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export default Register;
