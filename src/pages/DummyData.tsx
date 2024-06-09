@@ -13,8 +13,6 @@ export interface Post {
   tags: string[];
   comments: number;
   likes: number;
-  source: string; // Added source field
-  sourceLink: string; // Added source link field
 }
 
 export const posts: Post[] = [
@@ -33,8 +31,6 @@ export const posts: Post[] = [
     tags: ["autodeploy"],
     comments: 10,
     likes: 80,
-    source: "ByteScrum Technologies",
-    sourceLink: "https://blog.bytescrum.com",
   },
   {
     postId: 2,
@@ -51,8 +47,6 @@ export const posts: Post[] = [
     tags: ["Angular", "NgRx"],
     comments: 3,
     likes: 15,
-    source: "Dany Walls",
-    sourceLink: "https://www.danywalls.com",
   },
   {
     postId: 3,
@@ -69,8 +63,6 @@ export const posts: Post[] = [
     tags: ["Angular", "NgRx"],
     comments: 3,
     likes: 90,
-    source: "Dany Walls",
-    sourceLink: "https://www.danywalls.com",
   },
   {
     postId: 4,
@@ -87,8 +79,6 @@ export const posts: Post[] = [
     tags: ["Angular", "NgRx"],
     comments: 3,
     likes: 45,
-    source: "Dany Walls",
-    sourceLink: "https://www.danywalls.com",
   },
   {
     postId: 5,
@@ -105,8 +95,6 @@ export const posts: Post[] = [
     tags: ["Angular", "NgRx"],
     comments: 3,
     likes: 78,
-    source: "Dany Walls",
-    sourceLink: "https://www.danywalls.com",
   },
   {
     postId: 6,
@@ -123,8 +111,6 @@ export const posts: Post[] = [
     tags: ["Angular", "NgRx"],
     comments: 3,
     likes: 100,
-    source: "Dany Walls",
-    sourceLink: "https://www.danywalls.com",
   },
   {
     postId: 7,
@@ -141,7 +127,5 @@ export const posts: Post[] = [
     tags: ["Angular", "NgRx"],
     comments: 3,
     likes: 12,
-    source: "Dany Walls",
-    sourceLink: "https://www.danywalls.com",
   },
 ];
