@@ -9,7 +9,7 @@ const Register = React.lazy(() => import('../pages/Auth/Register'));
 const ForgotPassword = React.lazy(() => import('../pages/Auth/ForgotPassword'));
 const ResetPassword = React.lazy(() => import('../pages/Auth/ResetPassword'));
 const Dashboard = React.lazy(() => import('../pages/Dashboard/Dashboard'));
-// const AllPosts = React.lazy(() => import('../pages/AllPosts'));
+const AllPosts = React.lazy(() => import('../pages/AllPosts'));
 // const Post = React.lazy(() => import('../pages/Post'));
 // const AllTags = React.lazy(() => import('../pages/AllTags'));
 // const Tag = React.lazy(() => import('../pages/Tag'));
@@ -45,7 +45,7 @@ const routesConfig = [
  { path: '/dashboard/analytics', component: Analytics, protected: true },
  { path: '/dashboard/profile', component: Profile, protected: true },
  { path: '/dashboard/settings', component: Settings, protected: true },
- // { path: '/posts/all', component: AllPosts, protected: false },
+ { path: '/posts/all', component: AllPosts, protected: false },
  // { path: '/posts/:postId', component: Post, protected: false },
  // { path: '/tags/all', component: AllTags, protected: false },
  // { path: '/tags/:tagId', component: Tag, protected: false },

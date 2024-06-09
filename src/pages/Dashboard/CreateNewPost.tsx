@@ -8,7 +8,6 @@ import SubmitButton from '../../ui/CreatePostComponents/SubmitButton';
 import SummaryField from '../../ui/CreatePostComponents/SummaryField';
 import { uploadImageToAzure } from '../../utils/blobService';
 
-
 const CreateNewPost = () => {
   const navigate = useNavigate();
 
@@ -101,10 +100,10 @@ const CreateNewPost = () => {
         </div>
       </header>
       <div>
-        <h3 className='ml-8 pb-7 text-4xl font-bold '>Create a new post!</h3>
+        <h3 className='pb-7 text-4xl font-bold '>Create a new post!</h3>
       </div>
       <div className="flex flex-col lg:flex-row">
-        <div className="lg:w-2/3 ml-8 p-6 bg-white shadow-md rounded-lg mb-6 lg:mb-0">
+        <div className="lg:w-2/3 p-6 bg-white shadow-md rounded-lg mb-6 lg:mb-0">
           <Formik
             initialValues={{ title: '', summary: '', tags: '', content: '' }}
             validationSchema={validationSchema}
@@ -116,9 +115,11 @@ const CreateNewPost = () => {
             {({ setFieldValue }) => (
               <Form>
                 <TitleField />
-                <SummaryField /> {/* Include SummaryField component */}
+                <SummaryField />
                 <ContentField setFieldValue={setFieldValue} />
-                <SubmitButton isSubmitting={false} />
+                <div className="mt-16 md:mt-0"> {/* Apply top margin on mobile */}
+                  <SubmitButton isSubmitting={false} />
+                </div>
               </Form>
             )}
           </Formik>
