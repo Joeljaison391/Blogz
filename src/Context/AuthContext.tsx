@@ -32,11 +32,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
+    console.log('Checking user');
     const checkUser = async () => {
       try {
         const user = localStorage.getItem('user');
         if (user) {
           setUser(JSON.parse(user));
+          console.log('User found:', user);
         }
         const expiry = localStorage.getItem('expiry');
         if (expiry) {
