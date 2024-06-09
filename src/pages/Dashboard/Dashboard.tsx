@@ -1,30 +1,39 @@
 // src/components/Dashboard.tsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Dashboard: React.FC = () => {
-  const [posts, setPosts] = useState([
-    {
-      title: "Color Maze",
-      description: "an accidental project",
-      publishedDate: "2024-03-30",
-      editedDate: "2024-03-30",
-      reactions: 1,
-      comments: 0,
-      views: 59,
-    },
-    {
-      title: "StarBoard v1.0.0",
-      description: "",
-      publishedDate: "2024-03-03",
-      editedDate: null,
-      reactions: 0,
-      comments: 0,
-      views: 55,
-    },
-  ]);
+  const [posts, setPosts] = useState([] as any[]);
 
   const [selectedSection, setSelectedSection] = useState("Posts");
+
+
+  useEffect(() => {
+    // Fetch data here
+    setPosts([
+      {
+        title: "Color Maze",
+        description: "an accidental project",
+        publishedDate: "2024-03-30",
+        editedDate: "2024-03-30",
+        reactions: 1,
+        comments: 0,
+        views: 59,
+      },
+      {
+        title: "StarBoard v1.0.0",
+        description: "",
+        publishedDate: "2024-03-03",
+        editedDate: null,
+        reactions: 0,
+        comments: 0,
+        views: 55,
+      },
+    ]);
+
+
+  }
+  , []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
