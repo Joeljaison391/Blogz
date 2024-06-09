@@ -6,8 +6,18 @@ import AUTHGRAD from "../../assets/AuthPages/AUTH-GRAD.jpg";
 import AuthButton from '../../ui/Buttons/AuthButton';
 import SocialLoginButtons from '../../ui/Buttons/SocialLoginButtons';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../Context/AuthContext';
 
 const Login = () => {
+
+  const { login } = useAuth();  
+
+  const handleSubmit = (values: { identifier: string; password: string; }, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+    login(values);
+    console.log(values);
+    setSubmitting(false);
+  };
+
   return (
     <div className="min-h-screen w-full bg-white py-4 px-2 flex items-center justify-center relative">
       <motion.img 
@@ -65,32 +75,29 @@ const Login = () => {
           <SocialLoginButtons />
 
           <Formik
-            initialValues={{ email: '', password: '', remember: false }}
+            initialValues={{ identifier: '', password: '', remember: false }}
             validationSchema={Yup.object({
-              email: Yup.string().email('Invalid email address').required('Required'),
+              identifier: Yup.string().required('Required'),
               password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
             })}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log(values);
-              setSubmitting(false);
-            }}
+            onSubmit={handleSubmit}
           >
             {({ isSubmitting }) => (
               <Form>
                 <div className="mb-4">
                   <label
-                    htmlFor="email"
+                    htmlFor="identifier"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Email
+                    Email or Username
                   </label>
                   <Field
-                    type="email"
-                    name="email"
-                    id="email"
+                    type="text"
+                    name="identifier"
+                    id="identifier"
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-800 focus:border-gray-800 sm:text-sm"
                   />
-                  <ErrorMessage name="email" component="div" className="text-red-600 text-sm mt-1" />
+                  <ErrorMessage name="identifier" component="div" className="text-red-600 text-sm mt-1" />
                 </div>
                 <div className="mb-4">
                   <label

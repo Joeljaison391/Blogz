@@ -10,7 +10,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
-  login: (userData: User) => void;
+  login: (userData: { identifier:string; password: string }) => Promise<void>;
   logout: () => void;
   register: (userData: { username: string; email: string; password: string }) => Promise<void>;
   loading: boolean;
@@ -31,17 +31,49 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-
+  React.useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const user = localStorage.getItem('user');
+        if (user) {
+          setUser(JSON.parse(user));
+        }
+        const expiry = localStorage.getItem('expiry');
+        if (expiry) {
+          const expiryDate = new Date(expiry);
+          if (new Date() > expiryDate) {
+            localStorage.removeItem('user');
+            localStorage.removeItem('expiry');
+            setUser(null);
+          }
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error('Error checking user:', error);
+      }
+    };
+    checkUser();
+  }, []);
 
   
     
    
 
-  const login = async (userData: User) => {
+  const login = async (userData: { identifier:string; password: string }) => {
     try {
-      const response = await axiosInstance.post('/auth/login', userData);
+      const response = await axiosInstance.post('/v2/auth/user/login', userData);
+      console.log(response);
       setUser(response.data);
-      localStorage.setItem('user', JSON.stringify(response.data));
+      if(response.status === 200){
+        console.log('User logged in successfully');
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        const expiry = new Date();
+        expiry.setUTCHours(expiry.getUTCHours() + 5);
+        localStorage.setItem('expiry', expiry.toISOString());
+        setUser(response.data.user);
+        setLoading(false);
+        navigate('/dashboard');
+      }
     } catch (error) {
       console.error('Error logging in:', error);
     }
@@ -64,10 +96,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.log(response);
       if(response.status === 201){
         console.log('User registered successfully');
-        setUser(response.data);
-        localStorage.setItem('user', JSON.stringify(response.data));
         setLoading(false);
-        navigate('/dashboard');
+        navigate('/auth/login');
       }
       
     } catch (error) {
