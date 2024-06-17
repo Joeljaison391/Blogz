@@ -1,5 +1,5 @@
 import React from 'react';
-import { Post } from '../pages/DummyData';
+import { Post } from '../../pages/DummyData';
 
 interface PostProps {
   post: Post;

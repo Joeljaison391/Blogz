@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { NavbarLink } from '../ui/Links/NavbarLink';
-import { SignupButton } from '../ui/Buttons/SignupButton';
+import { NavbarLink } from '../../ui/Links/NavbarLink';
+import { SignupButton } from '../../ui/Buttons/SignupButton';
 
 interface Link {
     text: string;

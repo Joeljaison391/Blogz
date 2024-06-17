@@ -1,5 +1,5 @@
 import React from 'react';
-import { posts } from '../pages/DummyData';
+import { posts } from '../../pages/DummyData';
 
 const TrendingArticles: React.FC = () => {
   // Sort posts by the number of likes in descending order

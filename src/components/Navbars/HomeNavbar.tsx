@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavbarLink } from "../ui/Links/NavbarLink";
+import { NavbarLink } from "../../ui/Links/NavbarLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faPen, faMoon, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
 

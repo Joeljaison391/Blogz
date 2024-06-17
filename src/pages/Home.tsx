@@ -1,7 +1,7 @@
-import { Navbar } from '../components/Navbar';
-import Header from '../components/Header';
-import Features from '../components/Features';
-import CallToAction from '../components/CallToAction';
+import { Navbar } from '../components/Navbars/Navbar';
+import Header from '../components/HomeComponents/Header';
+import Features from '../components/HomeComponents/Features';
+import CallToAction from '../components/HomeComponents/CallToAction';
 
 const Home = () => {
   return (
