@@ -2,10 +2,10 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-import TitleField from '../../ui/CreatePostComponents/TitleField';
-import ContentField from '../../ui/CreatePostComponents/ContentField';
-import SubmitButton from '../../ui/CreatePostComponents/SubmitButton';
-import SummaryField from '../../ui/CreatePostComponents/SummaryField';
+import TitleField from '../../components/CreatePostComponents/TitleField';
+import ContentField from '../../components/CreatePostComponents/ContentField';
+import SubmitButton from '../../components/CreatePostComponents/SubmitButton';
+import SummaryField from '../../components/CreatePostComponents/SummaryField';
 import { uploadImageToAzure } from '../../utils/blobService';
 
 const CreateNewPost = () => {

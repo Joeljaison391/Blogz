@@ -1,9 +1,9 @@
 import React from 'react';
-import { HomeNavbar } from '../components/HomeNavbar';
+import { HomeNavbar } from '../components/Navbars/HomeNavbar';
 import { posts } from '../pages/DummyData';
-import PostComponent from '../components/PostComponent';
-import TrendingArticles from '../components/TrendingArticles';
-import TopDiscussions from '../components/TopDiscussions';
+import PostComponent from '../components/AllPostsComponents/PostComponent';
+import TrendingArticles from '../components/AllPostsComponents/TrendingArticles';
+import TopDiscussions from '../components/AllPostsComponents/TopDiscussions';
 
 const AllPosts: React.FC = () => {
   return (
