@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import axiosInstance from '../axiosConfig';
+import axiosInstance from '../utils/axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import API_URLS  from '../utils/backendAPIs'
 
 interface User {
   username: string;
@@ -64,7 +65,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (userData: { identifier: string; password: string }) => {
     try {
-      const response = await axiosInstance.post('/v2/auth/user/login', userData);
+      const response = await axiosInstance.post(API_URLS.AUTH.LOGIN, userData);
       if (response.status === 200) {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         const expiry = new Date();
@@ -81,7 +82,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axiosInstance.post('/auth/logout');
+      await axiosInstance.post(API_URLS.AUTH.LOGOUT);
       setUser(null);
       localStorage.removeItem('user');
     } catch (error) {
@@ -91,7 +92,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const register = async (userData: { username: string; email: string; password: string }) => {
     try {
-      const response = await axiosInstance.post('/v2/auth/user/register', userData);
+      const response = await axiosInstance.post(API_URLS.AUTH.REGISTER, userData);
       if (response.status === 201) {
         setLoading(false);
         navigate('/auth/login');
@@ -105,7 +106,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const testBackend = async () => {
     try {
       console.log('Testing backend');
-      const response = await axiosInstance.get('/test/health');
+      const response = await axiosInstance.get(API_URLS.TEST.HEALTH);
       console.log(response.data);
     } catch (error) {
       console.error('Error testing backend:', error);
