@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { NavbarLink } from "../../ui/Links/NavbarLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faPen, faMoon, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faPen,
+  faMoon,
+  faUser,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 
 interface Link {
   text: string;
@@ -29,7 +36,9 @@ export const HomeNavbar: React.FC = () => {
           <button className="sm:hidden " onClick={toggleMenu}>
             <FontAwesomeIcon icon={faBars} className="text-gray-500 w-6 h-6" />
           </button>
-          <div className="text-3xl font-bold text-blue-500 pb-2 ml-2 sm:ml-0">Blogz</div>
+          <div className="text-3xl font-bold text-blue-500 pb-2 ml-2 sm:ml-0">
+            Blogz
+          </div>
         </div>
         <nav className="hidden sm:flex gap-5 flex-1 justify-center">
           {links.map((link, index) => (
@@ -39,13 +48,19 @@ export const HomeNavbar: React.FC = () => {
         <div className="flex items-center gap-4">
           {/* Search Button */}
           <button className="p-2">
-            <FontAwesomeIcon icon={faSearch} className="text-gray-500 w-6 h-6" />
+            <FontAwesomeIcon
+              icon={faSearch}
+              className="text-gray-500 w-6 h-6"
+            />
           </button>
           {/* Write Button */}
-          <button className="flex items-center p-2 bg-blue-500 text-white rounded-full">
-            <FontAwesomeIcon icon={faPen} className="w-6 h-6 mr-2" />
-            Write
-          </button>
+          <NavLink to={"/dashboard/posts/create"}>
+            <button className="flex items-center p-2 bg-blue-500 text-white rounded-full">
+              <FontAwesomeIcon icon={faPen} className="w-6 h-6 mr-2" />
+              Write
+            </button>
+          </NavLink>
+
           {/* Dark Mode Button */}
           <button className="p-2">
             <FontAwesomeIcon icon={faMoon} className="text-gray-500 w-6 h-6" />
