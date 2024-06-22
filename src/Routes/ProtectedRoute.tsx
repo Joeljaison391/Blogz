@@ -1,25 +1,19 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../Context/AuthContext';
+import useAuthState from '../hooks/useAuthState.hook';
 
 interface ProtectedRouteProps {
   component: React.ComponentType;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ component: Component }) => {
-
-  let isAuthenticated = false;
-
-  const {user} = useAuth();
-
-  if(user) {
-    isAuthenticated = true;
-  }else{
-    isAuthenticated = false;
-  }
-
-   
+  const { isAuthenticated } = useAuthState();
   const location = useLocation();
+
+  if (isAuthenticated === null) {
+    // You can show a loading indicator here if desired
+    return <div>Loading...</div>;
+  }
 
   return isAuthenticated ? (
     <Component />
