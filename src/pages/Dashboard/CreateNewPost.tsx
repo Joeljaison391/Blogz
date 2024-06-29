@@ -1,12 +1,12 @@
+import React, { Suspense } from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-import TitleField from '../../components/CreatePostComponents/TitleField';
-import ContentField from '../../components/CreatePostComponents/ContentField';
-import SubmitButton from '../../components/CreatePostComponents/SubmitButton';
-import SummaryField from '../../components/CreatePostComponents/SummaryField';
-import { uploadImageToAzure } from '../../utils/blobService';
+const TitleField = React.lazy(() => import('../../components/CreatePostComponents/TitleField'));
+const ContentField = React.lazy(() => import('../../components/CreatePostComponents/ContentField'));
+const SubmitButton = React.lazy(() => import('../../components/CreatePostComponents/SubmitButton'));
+const SummaryField = React.lazy(() => import('../../components/CreatePostComponents/SummaryField'));
 
 const CreateNewPost = () => {
   const navigate = useNavigate();
@@ -46,6 +46,7 @@ const CreateNewPost = () => {
       const imgPromises = base64Images.map(async (base64Image, index) => {
         const blob = base64ToBlob(base64Image);
         const file = new File([blob], `image-${index}.png`, { type: blob.type });
+        const { uploadImageToAzure } = await import('../../utils/blobService');
         const imgUrl = await uploadImageToAzure(file);
         return { base64Image, imgUrl };
       });
@@ -114,12 +115,14 @@ const CreateNewPost = () => {
           >
             {({ setFieldValue }) => (
               <Form>
-                <TitleField />
-                <SummaryField />
-                <ContentField setFieldValue={setFieldValue} />
-                <div className="mt-16 md:mt-0"> {/* Apply top margin on mobile */}
-                  <SubmitButton isSubmitting={false} />
-                </div>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <TitleField />
+                  <SummaryField />
+                  <ContentField setFieldValue={setFieldValue} />
+                  <div className="mt-16 md:mt-0"> {/* Apply top margin on mobile */}
+                    <SubmitButton isSubmitting={false} />
+                  </div>
+                </Suspense>
               </Form>
             )}
           </Formik>
