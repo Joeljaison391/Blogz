@@ -11,7 +11,7 @@ type APIUrls = {
   };
   POSTS: {
     GET_POST: (postId: number | string) => string;
-    GET_ALL_POSTS: string;
+    GET_ALL_POSTS: (page: number) => string; // Update the type to accept a page number
     SEARCH_POST: (filter: string) => string;
   };
 };
@@ -27,7 +27,7 @@ const API_URLS: APIUrls = {
   },
   POSTS: {
     GET_POST: (postId) => `/posts/getPost/${postId}`,
-    GET_ALL_POSTS: '/post/user/getAllPosts',
+    GET_ALL_POSTS: (page) => `/post/user/getAllPosts?page=${page}`, // Updated URL with page parameter
     SEARCH_POST: (filter) => `/posts/search?filter=${filter}`,
   },
 };
