@@ -21,7 +21,7 @@ export const HomeNavbar: React.FC = () => {
   const links: Link[] = [
     { text: "My Feed", url: "/my-feed" },
     { text: "Discussions", url: "/discussions" },
-    { text: "Headless CMS", url: "/headless-cms" },
+    { text: "All posts", url: "/posts/all" },
   ];
 
   const toggleMenu = () => {
