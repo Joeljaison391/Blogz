@@ -2,20 +2,19 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../../utils/axiosConfig';
 import API_URLS from '../../utils/backendAPIs';
 
-// Define the interface for the post author
+
 interface Author {
   username: string;
 }
 
-// Define the interface for a single post
 export interface Post {
   postId: number;
   title: string;
   content: string;
   author: Author;
-  imageUrl?: string | null; // Optional imageUrl
-  publishAt: string; // Assuming publishAt is a string date
-  status: string; // Assuming status is a string
+  imageUrl?: string | null; 
+  publishAt: string; 
+  status: string; 
 }
 
 // Define the interface for the posts slice state
@@ -39,7 +38,7 @@ export const fetchPostById = createAsyncThunk(
   'posts/fetchPostById',
   async (postId: number) => {
     const response = await axiosInstance.get(API_URLS.POSTS.GET_POST(postId));
-    return response.data.post; // Assuming the response structure matches the Post interface
+    return response.data.post; 
   }
 );
 
@@ -48,7 +47,7 @@ export const fetchAllPosts = createAsyncThunk(
   async () => {
     const response = await axiosInstance.get(API_URLS.POSTS.GET_ALL_POSTS);
     console.log(response.data.posts);
-    return response.data.posts; // Assuming the response structure matches the Post interface array
+    return response.data.posts; 
   }
 );
 
@@ -56,7 +55,7 @@ export const searchPosts = createAsyncThunk(
   'posts/searchPosts',
   async (filter: string) => {
     const response = await axiosInstance.get(API_URLS.POSTS.SEARCH_POST(filter));
-    return response.data.posts; // Assuming the response structure matches the Post interface array
+    return response.data.posts;
   }
 );
 
