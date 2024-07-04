@@ -1,5 +1,6 @@
 import React  from 'react';
 import PageNotFound from '../pages/PageNotFound';
+import PostId from '../pages/Posts/PostId';
 
 const Home = React.lazy(() => import('../pages/Home'));
 const About = React.lazy(() => import('../pages/About'));
@@ -46,7 +47,7 @@ const routesConfig = [
  { path: '/dashboard/profile', component: Profile, protected: true },
  { path: '/dashboard/settings', component: Settings, protected: true },
  { path: '/posts/all', component: AllPosts, protected: false },
- // { path: '/posts/:postId', component: Post, protected: false },
+ { path: '/posts/:postId', component: PostId, protected: false },
  // { path: '/tags/all', component: AllTags, protected: false },
  // { path: '/tags/:tagId', component: Tag, protected: false },
  // { path: '/users/all', component: AllUsers, protected: false },
