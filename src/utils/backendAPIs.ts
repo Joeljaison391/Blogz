@@ -26,7 +26,7 @@ const API_URLS: APIUrls = {
     REGISTER: '/auth/user/register',
   },
   POSTS: {
-    GET_POST: (postId) => `/posts/getPost/${postId}`,
+    GET_POST: (postId) => `/post/user/getPost/${postId}`,
     GET_ALL_POSTS: (page) => `/post/user/getAllPosts?page=${page}`, // Updated URL with page parameter
     SEARCH_POST: (filter) => `/posts/search?filter=${filter}`,
   },
