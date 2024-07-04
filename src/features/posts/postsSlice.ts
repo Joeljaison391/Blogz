@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../utils/axiosConfig";
 import API_URLS from "../../utils/backendAPIs";
@@ -36,34 +37,50 @@ const initialState: PostsState = {
 
 export const fetchPostById = createAsyncThunk(
   "posts/fetchPostById",
-  async (postId: number) => {
-    const response = await axiosInstance.get(API_URLS.POSTS.GET_POST(postId));
-    return response.data.post;
+  async (postId: number, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get(API_URLS.POSTS.GET_POST(postId));
+      return response.data.post;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
 export const fetchAllPosts = createAsyncThunk(
   "posts/fetchAllPosts",
-  async () => {
-    const response = await axiosInstance.get(API_URLS.POSTS.GET_ALL_POSTS(1));
-    return response.data.posts;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get(API_URLS.POSTS.GET_ALL_POSTS(1));
+      return response.data.posts;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
 export const searchPosts = createAsyncThunk(
   "posts/searchPosts",
-  async (filter: string) => {
-    const response = await axiosInstance.get(API_URLS.POSTS.SEARCH_POST(filter));
-    return response.data.posts;
+  async (filter: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get(API_URLS.POSTS.SEARCH_POST(filter));
+      return response.data.posts;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
 export const fetchPostsByPage = createAsyncThunk(
   "posts/fetchPostsByPage",
-  async (page: number) => {
-    console.log("fetching posts by page"+page);
-    const response = await axiosInstance.get(API_URLS.POSTS.GET_ALL_POSTS(page));
-    return response.data.posts;
+  async (page: number, { rejectWithValue }) => {
+    try {
+      console.log("fetching posts by page " + page);
+      const response = await axiosInstance.get(API_URLS.POSTS.GET_ALL_POSTS(page));
+      return response.data.posts;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
   }
 );
 
@@ -86,7 +103,7 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPostById.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Failed to fetch post";
+        state.error = action.payload as string;
       })
       .addCase(fetchAllPosts.pending, (state) => {
         state.status = "loading";
@@ -97,7 +114,7 @@ const postsSlice = createSlice({
       })
       .addCase(fetchAllPosts.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Failed to fetch posts";
+        state.error = action.payload as string;
       })
       .addCase(searchPosts.pending, (state) => {
         state.status = "loading";
@@ -108,7 +125,7 @@ const postsSlice = createSlice({
       })
       .addCase(searchPosts.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Failed to search posts";
+        state.error = action.payload as string;
       })
       .addCase(fetchPostsByPage.pending, (state) => {
         state.status = "loading";
@@ -119,7 +136,7 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPostsByPage.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Failed to fetch posts by page";
+        state.error = action.payload as string;
       })
       .addCase(resetPosts.pending, (state) => {
         state.status = "loading";
@@ -130,7 +147,7 @@ const postsSlice = createSlice({
       })
       .addCase(resetPosts.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message || "Failed to reset posts";
+        state.error = action.payload as string;
       });
   },
 });

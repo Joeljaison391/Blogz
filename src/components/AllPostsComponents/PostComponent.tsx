@@ -52,7 +52,7 @@ const PostComponent: React.FC<PostProps> = ({ post }) => {
         <div className="text-gray-700 mb-4">
           {truncateContent(post.content, 150)}
         </div>
-        <Link to={`/post/${post.postId}`} className="text-blue-500 hover:underline font-semibold">
+        <Link to={`/posts/${post.postId}`} className="text-blue-500 hover:underline font-semibold">
           Read More
         </Link>
       </div>
