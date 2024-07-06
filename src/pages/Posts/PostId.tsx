@@ -32,7 +32,7 @@ const PostId: React.FC = () => {
         {status === "failed" && <p className="text-center text-red-600">Error: {error}</p>}
         {status === "succeeded" && post && (
           <div className="bg-white rounded-lg shadow-md p-6">
-            <h1 className="text-6xl font-bold mb-8 text-center text-blue-800">{post.title}</h1>
+            <h1 className="text-6xl font-bold mb-8 text-center text-green-700">{post.title}</h1>
             <div className="h-[3px] w-full bg-slate-950 rounded-lg mb-8"></div>
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
