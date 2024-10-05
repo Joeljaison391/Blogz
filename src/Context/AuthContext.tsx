@@ -65,7 +65,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (userData: { identifier: string; password: string }) => {
     try {
-      const response = await axiosInstance.post(API_URLS.AUTH.LOGIN, userData);
+      const response = await axiosInstance.post(API_URLS.AUTH.LOGIN, userData , {
+        withCredentials: true
+      });
       if (response.status === 200) {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         const expiry = new Date();

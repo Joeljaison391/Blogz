@@ -7,7 +7,8 @@ const transformHtmlToReact = (htmlContent: string) => {
   const applyTailwindClasses = (element: HTMLElement): React.ReactNode => {
     switch (element.tagName.toLowerCase()) {
       case 'h1':
-        return <h1 className="text-3xl font-bold my-4 underline">{element.textContent}</h1>;
+        return <h1 className="text-3xl font-bold my-4 underline">
+          {element.textContent}</h1>;
       case 'h2':
         return <h2 className="text-2xl font-semibold my-3">{element.textContent}</h2>;
       case 'p':
