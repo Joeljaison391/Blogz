@@ -24,7 +24,8 @@ const AllPosts: React.FC = () => {
       setLoadingMore(true)
       try {
         await dispatch(resetPosts())
-        await dispatch(fetchPostsByPage(1))
+       const result =  await dispatch(fetchPostsByPage(1))
+       console.log(result)
       } catch (error) {
         console.error('Error loading initial posts:', error)
       } finally {

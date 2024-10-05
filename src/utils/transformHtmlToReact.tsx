@@ -11,7 +11,19 @@ const transformHtmlToReact = (htmlContent: string) => {
           {element.textContent}</h1>;
       case 'h2':
         return <h2 className="text-2xl font-semibold my-3">{element.textContent}</h2>;
+
+      case 'h3':
+        console.log('H3:', element.textContent);
+        return <h3 className="text-xl font-semibold my-2">{element.textContent}</h3>;
       case 'p':
+
+        // check if the element has an image
+
+        if (element.querySelector('img')) {
+          console.log('Image source:', element.querySelector('img')?.getAttribute('src'));
+          return <img  src={element.querySelector('img')?.getAttribute('src') ?? undefined} alt={element.querySelector('img')?.getAttribute('alt') ?? undefined} className="my-4 rounded-sm " height={200} width={500} />;
+        }
+
         return <p className="my-2 leading-relaxed">{element.textContent}</p>;
       case 'ul':
         return <ul className="list-disc pl-5 my-4">{Array.from(element.children).map((child, index) => (
@@ -23,10 +35,13 @@ const transformHtmlToReact = (htmlContent: string) => {
         ))}</ol>;
       case 'li':
         return <li className="my-1">{element.textContent}</li>;
-      case 'img':
-        return <img src={element.getAttribute('src') ?? undefined} alt={element.getAttribute('alt') ?? undefined} className="my-4 rounded" />;
+        case 'img':
+          console.log('Image source:', element.getAttribute('src'));
+          return <img src={element.getAttribute('src') ?? undefined} alt={element.getAttribute('alt') ?? undefined} className="my-4 rounded" />;
+        
+        
       case 'a':
-        return <a ref={element.getAttribute('href')} className="text-blue-500 hover:underline">{element.textContent}</a>;
+        return <a href={element.getAttribute('href') ?? '#'} className="text-blue-500 hover:underline">{element.textContent}</a>;
       default:
         return <span>{Array.from(element.childNodes).map((child, index) => (
           <React.Fragment key={index}>{transformNode(child)}</React.Fragment>
