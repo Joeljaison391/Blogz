@@ -1,4 +1,4 @@
-import { Navbar } from '../components/Navbars/Navbar';
+import  Navbar  from '../components/Navbars/Navbar';
 import Header from '../components/HomeComponents/Header';
 import Features from '../components/HomeComponents/Features';
 import CallToAction from '../components/HomeComponents/CallToAction';
