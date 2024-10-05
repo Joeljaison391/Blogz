@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPost, resetPost } from '../../features/posts/createpostSlice';
 import { AppDispatch, RootState } from '../../Context/store';
 import { Post } from '../../utils/types';
+import { FaImage, FaShare, FaComments } from 'react-icons/fa'; // Importing React Icons
+import { motion } from 'framer-motion';
 
 const TitleField = React.lazy(() => import('../../components/CreatePostComponents/TitleField'));
 const ContentField = React.lazy(() => import('../../components/CreatePostComponents/ContentField'));
@@ -97,8 +99,7 @@ const CreateNewPost: React.FC = () => {
         content: updatedContent,
       };
 
-       await dispatch(createPost(newPost)).unwrap();
-      // console.log('Post created:', resultAction);
+      await dispatch(createPost(newPost)).unwrap();
       navigate('/dashboard');
     } catch (err) {
       const error = err as { message?: string };
@@ -139,7 +140,7 @@ const CreateNewPost: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <motion.div className="min-h-screen bg-gray-100 p-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <header className="flex items-center justify-between mb-6">
         <div 
           className="text-blue-600 font-bold text-3xl cursor-pointer" 
@@ -180,23 +181,35 @@ const CreateNewPost: React.FC = () => {
         </div>
 
         <div className="lg:w-1/3 p-6">
-          <div className="bg-white p-4 shadow-md rounded-lg">
+          <div className="bg-white p-4 shadow-md rounded-lg mb-6">
             <h3 className="font-bold text-lg mb-4">Publishing Tips</h3>
             <ul className="list-disc pl-5">
-              <li className="mb-2">
+              <li className="flex items-center mb-2">
+                <FaImage className="text-blue-600 mr-2" />
                 Ensure your post has a cover image set to make the most of the home feed and social media platforms.
               </li>
-              <li className="mb-2">
+              <li className="flex items-center mb-2">
+                <FaShare className="text-blue-600 mr-2" />
                 Share your post on social media platforms or with your co-workers or local communities.
               </li>
-              <li>
+              <li className="flex items-center">
+                <FaComments className="text-blue-600 mr-2" />
                 Ask people to leave questions for you in the comments. It's a great way to spark additional discussion.
               </li>
             </ul>
           </div>
+          
+          <div className="bg-white p-4 shadow-md rounded-lg">
+            <h3 className="font-bold text-lg mb-4">Rules for Writing</h3>
+            <ul className="list-disc pl-5">
+              <li className="mb-2">Do not harass any people.</li>
+              <li className="mb-2">Do not promote any paid products.</li>
+              <li className="mb-2">Do not spread fake information.</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

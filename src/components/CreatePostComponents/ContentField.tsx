@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Field, ErrorMessage, FormikHelpers } from 'formik';
 import ReactQuill from 'react-quill';
