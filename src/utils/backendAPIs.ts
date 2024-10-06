@@ -8,6 +8,8 @@ type APIUrls = {
     LOGIN: string;
     LOGOUT: string;
     REGISTER: string;
+    REQUEST_RESET_PASSWORD: string;
+    RESET_PASSWORD: string;
   };
   POSTS: {
     GET_POST: (postId: number | string) => string;
@@ -26,6 +28,8 @@ const API_URLS: APIUrls = {
     LOGIN: '/auth/user/login',
     LOGOUT: '/auth/logout',
     REGISTER: '/auth/user/register',
+    REQUEST_RESET_PASSWORD: '/auth/user/request-password-reset',
+    RESET_PASSWORD: '/auth/user/reset-password',
   },
   POSTS: {
     GET_POST: (postId) => `/post/user/getPost/${postId}`,

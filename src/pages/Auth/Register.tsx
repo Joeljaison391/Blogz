@@ -19,7 +19,7 @@ const EnhancedRegister = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100 py-4 px-2 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen w-full bg-gradient-to-br from-blue-100 to-purple-100 py-2 px-2 flex items-center justify-center relative overflow-hidden">
       <motion.div
         className="absolute inset-0 z-0"
         initial={{ opacity: 0 }}
@@ -45,7 +45,7 @@ const EnhancedRegister = () => {
       >
         <div className="relative z-10">
           <motion.div 
-            className="flex justify-center mb-8"
+            className="flex justify-center mb-2"
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.5, delay: 0.2 }}

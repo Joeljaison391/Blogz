@@ -35,7 +35,7 @@ const routesConfig = [
  { path: '/auth/login', component: Login, protected: false },
  { path: '/auth/register', component: Register, protected: false },
  { path: '/auth/forgot-password', component: ForgotPassword, protected: false },
- { path: '/auth/reset-password', component: ResetPassword, protected: false },
+ { path: '/auth/reset-password/:token', component: ResetPassword, protected: false },
  { path: '/dashboard', component: Dashboard, protected: true },
  { path: '/dashboard/posts', exact: true, component: Posts, protected: true },
  { path: '/dashboard/posts/create', component: CreateNewPost, protected: true },

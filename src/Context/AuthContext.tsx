@@ -13,6 +13,8 @@ interface AuthContextType {
   login: (userData: { identifier: string; password: string }) => Promise<void>;
   logout: () => void;
   register: (userData: { username: string; email: string; password: string }) => Promise<void>;
+  requestPasswordReset: (email: string) => Promise<void>; 
+  resetPassword: (token: string, password: string) => Promise<void>;
   loading: boolean;
   testBackend: () => void;
   checkUser: () => Promise<boolean>;
@@ -105,6 +107,33 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  const requestPasswordReset = async (email: string) => {
+    try {
+      const response = await axiosInstance.post(API_URLS.AUTH.REQUEST_RESET_PASSWORD, { email });
+      if (response.status === 200) {
+        console.log('Password reset email sent');
+      }
+    } catch (error) {
+      console.error('Error requesting password reset:', error);
+    }
+  };
+
+  const resetPassword = async (token: string, password: string) => {
+    try { 
+      
+      const response = await axiosInstance.post(API_URLS.AUTH.RESET_PASSWORD, { token, password }, {
+        withCredentials: true
+      });
+
+      if (response.status === 200) {
+        console.log('Password reset successfully');
+        navigate('/auth/login');
+      }
+    } catch (error) {
+      console.error('Error resetting password:', error);
+    }
+  };
+
   const testBackend = async () => {
     try {
       console.log('Testing backend');
@@ -116,7 +145,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, register, loading, testBackend, checkUser }}>
+    <AuthContext.Provider value={{ user, login, logout, register, loading, testBackend, checkUser ,requestPasswordReset , resetPassword }}>
       {children}
     </AuthContext.Provider>
   );
