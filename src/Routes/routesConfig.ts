@@ -1,6 +1,7 @@
 import React  from 'react';
 import PageNotFound from '../pages/PageNotFound';
 import PostId from '../pages/Posts/PostId';
+//import EditProfile from '@/pages/Users/EditProfile';
 
 const Home = React.lazy(() => import('../pages/Home'));
 const About = React.lazy(() => import('../pages/About'));

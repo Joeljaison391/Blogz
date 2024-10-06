@@ -1,8 +1,13 @@
+import HomeNavbar from "@/components/Navbars/HomeNavbar"
+import EditProfile from "../Users/EditProfile"
 
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div className="" >
+      <HomeNavbar/>
+      <EditProfile />
+    </div>
   )
 }
 

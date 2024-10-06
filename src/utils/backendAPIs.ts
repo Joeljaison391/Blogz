@@ -1,5 +1,3 @@
-// src/constants/apiUrls.ts
-
 type APIUrls = {
   TEST: {
     HEALTH: string;
@@ -16,7 +14,12 @@ type APIUrls = {
     GET_ALL_POSTS: (page: number) => string; // Update the type to accept a page number
     SEARCH_POST: (filter: string) => string;
     CREATE_POST: () => string;
-    GET_POSTAUTHORS_BY_IDS: (authorIds: number[]) => string; // Update the type to accept an array of numbers
+    GET_POSTAUTHORS_BY_IDS: (authorIds: number[]) => string; 
+
+  };
+  PROFILE: {
+    GET_PROFILE: string;
+    UPDATE_PROFILE: string;
   };
 };
 
@@ -42,6 +45,10 @@ const API_URLS: APIUrls = {
     }
 
   },
+  PROFILE: {
+    GET_PROFILE: '/auth/user/get-authenticated-user',
+    UPDATE_PROFILE: '/user/update-profile',
+  }
 };
 
 export default API_URLS;
